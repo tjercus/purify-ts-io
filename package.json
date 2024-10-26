@@ -1,0 +1,20 @@
+{
+  "name": "purify-ts-io",
+  "version": "1.0.0",
+  "description": "IO monad compatible with purify-ts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "IO",
+    "purify-ts",
+    "typescript",
+    "monad"
+  ],
+  "author": "Tjerk Valentijn",
+  "license": "ISC",
+  "dependencies": {
+    "purify-ts": "2.1.0"
+  }
+}
