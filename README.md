@@ -46,3 +46,49 @@ const App: React.FC = () => {
 
 export default App
 ```
+
+Imagine you want to combine multiple effects: reading an input value, updating another element’s text, and logging the action.
+
+```typescript
+import React, { useRef } from 'react'
+
+const setText = (element: HTMLElement, text: string): IO<void> =>
+  new IO(() => {
+    element.textContent = text
+  })
+
+const App: React.FC = () => {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const displayRef = useRef<HTMLDivElement>(null)
+
+  const handleClick = () => {
+    // Read the input value
+    const readInputValue = new IO(() => inputRef.current?.value ?? '')
+
+    // Create the effect to update displayRef's text
+    const updateDisplayText = (text: string): IO<void> =>
+      new IO(() => displayRef.current).chain(display =>
+        display ? setText(display, `You entered: ${text}`) : IO.of(undefined)
+      )
+
+    // Compose effects
+    const action = readInputValue
+      .chain(value => updateDisplayText(value)) // Update display text
+      .chain(value => logToConsole(`Logged: ${value}`)) // Log the result
+
+    // Execute the composed action
+    action.run()
+  }
+
+  return (
+    <div>
+      <input ref={inputRef} placeholder="Type something..." />
+      <button onClick={handleClick}>Display and Log</button>
+      <div ref={displayRef} style={{ marginTop: '10px' }}>Output here</div>
+    </div>
+  )
+}
+
+export default App
+
+```
