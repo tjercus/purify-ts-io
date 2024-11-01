@@ -1,9 +1,10 @@
 {
   "name": "purify-ts-io",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "IO monad compatible with purify-ts",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
@@ -25,5 +26,9 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "files": [
+    "dist",
+    "src"
+  ]
 }
