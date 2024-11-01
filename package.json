@@ -1,9 +1,12 @@
 {
   "name": "purify-ts-io",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "IO monad compatible with purify-ts",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -15,6 +18,12 @@
   "author": "Tjerk Valentijn",
   "license": "ISC",
   "dependencies": {
-    "purify-ts": "2.1.0"
+    "purify-ts": "^2.1.0"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
